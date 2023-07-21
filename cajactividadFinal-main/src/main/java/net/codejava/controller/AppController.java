@@ -62,10 +62,6 @@ public class AppController {
     public String saveImc(@ModelAttribute("imc") Imc imc) {
         service.save(imc);
         /*Imc imc = new Imc();*/
-        imc.setId(1);
-        imc.setNombrePersona("Alfredo");
-        imc.setAltura(1.80);
-        imc.setPeso(87d);
         imcService.save(imc);
         return "redirect:/";
     }

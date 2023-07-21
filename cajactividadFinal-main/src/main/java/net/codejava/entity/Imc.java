@@ -7,6 +7,8 @@ package net.codejava.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -14,19 +16,34 @@ import javax.persistence.Id;
  * @author jajimenez
  */
 @Entity
-public class Imc implements Serializable {
+public class Imc /*implements Serializable*/ {
+    
+    private long id;
+    private String nombrePersona;
+    private double peso;
+    private double altura;
+   
+    public Imc() {
+      
+    }
+    protected Imc (long id, String nombrePersona, double peso, double altura) {
+    
+        super ();
+        this.id = id;
+        this.nombrePersona = nombrePersona;
+        this.peso = peso;
+        this.altura = altura;
+        
+    }
 
     @Id
-    Integer id;
-    String nombrePersona;
-    Double peso;
-    Double altura;
-
-    public Integer getId() {
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -38,20 +55,21 @@ public class Imc implements Serializable {
         this.nombrePersona = nombrePersona;
     }
 
-    public Double getPeso() {
+    public double getPeso() {
         return peso;
     }
 
-    public void setPeso(Double peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
 
-    public Double getAltura() {
+    public double getAltura() {
         return altura;
     }
 
-    public void setAltura(Double altura) {
+    public void setAltura(double altura) {
         this.altura = altura;
     }
+ 
 
 }
