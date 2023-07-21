@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class AppController {
 
     @Autowired
-    private ProductService service;
+    private ImcService service;
     @Autowired
     private ImcService imcService;
 
@@ -32,36 +32,36 @@ public class AppController {
     public String viewHomePage(HttpSession session, Model model) {
 
         if (session.getAttribute("mySessionAttribute") != null) {
-            List<Product> listProducts = service.listAll();
-            model.addAttribute("listProducts", listProducts);
+            List<Imc> listImcs = service.listAll();
+            model.addAttribute("listImcs", listImcs);
             return "index";
         } else {
             model.addAttribute("formulario", new Formulario());
             return "login";
         }
-        //model.addAttribute("listProducts", listProducts);
+        //model.addAttribute("listImcs", listImcs);
     }
 
     @RequestMapping("/login")
     public String login(HttpSession session) {
         session.setAttribute("mySessionAttribute", "Bienvenido!");
 
-        // model.addAttribute("listProducts", listProducts);
+        // model.addAttribute("listImcs", listImcs);
         return "redirect:/";
     }
 
     @RequestMapping("/new")
-    public String showNewProductPage(Model model) {
-        Product product = new Product();
-        model.addAttribute("product", product);
+    public String showNewImcPage(Model model) {
+        Imc imc = new Imc();
+        model.addAttribute("imc", imc);
 
-        return "new_product";
+        return "new_imc";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveProduct(@ModelAttribute("product") Product product) {
-        service.save(product);
-        Imc imc = new Imc();
+    public String saveImc(@ModelAttribute("imc") Imc imc) {
+        service.save(imc);
+        /*Imc imc = new Imc();*/
         imc.setId(1);
         imc.setNombrePersona("Alfredo");
         imc.setAltura(1.80);
@@ -71,16 +71,16 @@ public class AppController {
     }
 
     @RequestMapping("/edit/{id}")
-    public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
-        ModelAndView mav = new ModelAndView("edit_product");
-        Product product = service.get(id);
-        mav.addObject("product", product);
+    public ModelAndView showEditImcPage(@PathVariable(name = "id") int id) {
+        ModelAndView mav = new ModelAndView("edit_imc");
+        Imc imc = service.get(id);
+        mav.addObject("imc", imc);
 
         return mav;
     }
 
     @RequestMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable(name = "id") int id) {
+    public String deleteImc(@PathVariable(name = "id") int id) {
         service.delete(id);
         return "redirect:/";
     }

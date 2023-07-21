@@ -11,31 +11,31 @@
                     <body>
                         <div align="center">
                             <p th:text="${session.mySessionAttribute}" th:unless="${session == null}">[...]</p>
-                            <h1>Product List</h1>
-                            <a href="new">Create New Product</a>
+                            <h1>Imc List</h1>
+                            <a href="new">Crear nueva consulta</a>
                             <br/><br/>
                             <table border="1" cellpadding="10" class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Product ID</th>
-                                        <th>Name</th>
-                                        <th>Brand</th>
-                                        <th>Made In</th>
-                                        <th>Price</th>
-                                        <th>Actions</th>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Peso</th>
+                                        <th>Altura</th>
+                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="product : ${listProducts}">
-                                        <td th:text="${product.id}">Product ID</td>
-                                        <td th:text="${product.name}">Name</td>
-                                        <td th:text="${product.brand}">Brand</td>
-                                        <td th:text="${product.madein}">Made in</td>
-                                        <td th:text="${product.price}">Price</td>
+                                    <tr th:each="Imc : ${listImcs}">
+                                        <td th:text="${imc.id}">Imc ID</td>
+                                        <td th:text="${imc.nombrePersona}">Nombre</td>
+                                        <td th:text="${imc.peso}">Peso</td>
+                                        <td th:text="${imc.altura}">Estatura</td>
+
                                         <td>
-                                            <a th:href="@{'/edit/' + ${product.id}}">Edit</a>
+                                            <a th:href="@{'/edit/' + ${imc.id}}">Editar</a>
                                             &nbsp;&nbsp;&nbsp;
-                                            <a th:href="@{'/delete/' + ${product.id}}">Delete</a>
+                                            <a th:href="@{'/delete/' + ${imc.id}}">Borrar</a>
                                         </td>
                                     </tr>
                                 </tbody>
